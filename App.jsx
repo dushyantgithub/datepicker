@@ -7,14 +7,17 @@ import './style.css';
 class App extends React.Component {
 	constructor (props) {
 	    super(props)
+	    // defining States
 	    this.state = {
 	      startDate: moment().subtract(1, 'y'),
 	      currentDate: moment(),
 	      endDate: moment().add(1, 'y')
 	    };
+	    // binding Events
 	    this.handleChange = this.handleChange.bind(this);
   	}
   	handleChange(date) {
+  		// setting States
 	    this.setState({
 	      currentDate: date
 	    });
