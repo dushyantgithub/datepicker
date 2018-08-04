@@ -1,0 +1,6 @@
+# Mac.
+.DS_STORE
+
+# React.
+node_modules
+npm-debug.log
