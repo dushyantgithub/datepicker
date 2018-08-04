@@ -5,37 +5,34 @@ import './style.css';
 
 
 class App extends React.Component {
-	constructor (props) {
-	    super(props)
-	    // defining States
-	    this.state = {
-	      startDate: moment().subtract(1, 'y'),
-	      currentDate: moment(),
-	      endDate: moment().add(1, 'y')
-	    };
-	    // binding Events
-	    this.handleChange = this.handleChange.bind(this);
-  	}
-  	handleChange(date) {
-  		// setting States
-	    this.setState({
-	      currentDate: date
+
+	constructor(props) {
+		super(props);
+		this.state = {
+		  	startDay: moment().format('DD'),
+		  	startMonth: moment().format('MM'),
+		  	startYear: moment().subtract(1, 'y').format('YYYY'),
+	      	endYear: moment().add(1, 'y').format('YYYY'),
+	      	currentDate: moment().format('YYYY MM DD')
+		};
+		this.state.startDate = this.state.startYear + "-" + this.state.startMonth + "-" + this.state.startDay;
+		this.state.endDate = this.state.endYear + "-" + this.state.startMonth + "-" + this.state.startDay;
+		this.handleChange = this.handleChange.bind(this);
+	}
+
+	handleChange(event) {
+		this.setState({
+	      currentDate: event
 	    });
 	}
    render() {
-   	console.log('Start Date', this.state.startDate)
-   	console.log('Current Date', this.state.currentDate)
-   	console.log('End Date', this.state.endDate)
 	    return (
-	    	<DatePicker
-    	        selected={this.state.currentDate}
-    	        onChange={this.handleChange}
-    	        startDate ={this.state.startDate}
-    	        endDate={this.state.endDate}
-    	        minDate={this.state.startDate}
-    	        maxDate={this.state.endDate}
-    	        showYearDropdown={true}
-	    	/>
+	    	<form onSubmit={this.handleSubmit}>
+		        <label>
+			        Select Date :&nbsp;
+			        <input className="datefield" type="date" name="datefield" onChange={this.handleChange} min={this.state.startDate} max={this.state.endDate} />
+		        </label>
+	      	</form>
 	   	);
 	}
 }
